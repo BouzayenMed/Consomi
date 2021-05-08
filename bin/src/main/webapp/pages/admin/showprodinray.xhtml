@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Add Ray" />
+	<ui:define name="menu">
+		<h:form id="form">
+
+			<td><h:outputText value="Min Quantity"></h:outputText></td>
+			<td><h:inputText converter="javax.faces.Integer"
+					value="#{ProdinRayController.mincnt}"></h:inputText></td>
+
+			<br />
+			<td><h:outputText converter="javax.faces.Integer"
+					value="Max Quantity"></h:outputText></td>
+			<h:inputText value="#{ProdinRayController.maxcnt}"></h:inputText>
+			<br />
+
+			<td><h:selectOneMenu value="#{ProdinRayController.id_prod_to_add}">
+					<f:selectItem itemLabel="Choisir Un Produit" itemValue="#{null}" />
+					<f:selectItems value="#{ProdController.get_Products_in_Ray(RayController.selectedRayid)}" 
+					var="Product" itemLabel="#{Product.getName()}" itemValue="#{Product.getProduct_Id()}"/>
+				</h:selectOneMenu></td>
+			<br />
+			<tr>
+				<td colspan="2"><h:commandButton
+						value="Ajouter un Nouveau Produit dans cette Rayon"
+						action="#{ProdinRayController.new_prod_to_rat(ProdinRayController.mincnt
+						,ProdinRayController.maxcnt,ProdinRayController.prod_to_add)}" /></td>
+			</tr>
+
+			<b>Affichier produit in the Line</b>
+
+
+			<h:dataTable
+				value="#{ProdinRayController.find_product_Ray_byRayId
+			(RayController.getSelectedRayid())}"
+				var="Prod_in_ray" border="1">
+				<f:facet name="header">
+					<h:outputText value="Available Products" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Id " />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getProduct().getProduct_Id()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Name " />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getProduct().getName()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Current Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getCurent_quantity() }"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Min Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getMin_quantity() }"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Max Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getMax_quantity() }"></h:outputText>
+				</h:column>
+						<h:column>
+					<f:facet name="header">
+						<h:outputText value="Add Quantity" />
+					</f:facet>
+					
+					<h:inputText value="#{Prod_in_ray.getProduct().x}"></h:inputText>
+					<!-- Hedhi ma temchi ken ki n5arejha me tableau xD -->
+					<td colspan="2"><h:commandButton
+						value="Add"
+						action="#{ProdinRayController.add_Quantity_to_ray(
+						Prod_in_ray.getProduct().x,Prod_in_ray.getProduct().getProduct_Id()
+						)}" /></td>
+
+				</h:column>
+
+
+			</h:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

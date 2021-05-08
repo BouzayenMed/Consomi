@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Add Ray" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+		<h:panelGroup>
+			<h:form>
+
+				<h:outputText >Add Ray</h:outputText>
+				<br> </br>
+				<h:outputText>Ray Name </h:outputText>
+				<span></span>
+				<h:inputText value="#{RayController.name_ray_to_add}"></h:inputText>
+				<br> </br>
+				<td><h:selectOneMenu value="#{CatController.selected_catid}">
+						<f:selectItem itemLabel="Choose a category for this ray"
+							itemValue="#{null}" />
+						<f:selectItems value="#{CatController.getcategories()}"
+							var="Category" itemLabel="#{Category.getName()}"
+							itemValue="#{Category.getCategory_Id()}" />
+					</h:selectOneMenu></td>
+					<h:commandButton action="#{RayController.addRaywithcat(RayController.name_ray_to_add,CatController.selected_catid)}"></h:commandButton>
+
+			</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

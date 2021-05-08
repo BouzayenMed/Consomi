@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!-- BEGIN : TP1 JSF Introduction Login -->
+				<h:panelGroup>
+			<h:form>
+				<h:outputText>Ray Name:</h:outputText>
+
+				<h:outputText>Please select a category</h:outputText>
+
+				<td><h:selectOneMenu
+						value="#{ProdinRayController.id_prod_to_add}">
+						<f:selectItem itemLabel="Choisir Un Produit" itemValue="#{null}" />
+						<f:selectItems
+							value="#{CatController.getcategories()}"
+							var="Cat" itemLabel="#{Cat.getCategory_Id()}"
+							itemValue="#{Cat.getCategory_Id()}" />
+					</h:selectOneMenu></td>
+				<br />
+
+
+			</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

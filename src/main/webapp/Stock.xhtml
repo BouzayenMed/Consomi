@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Stock Management" />
+	<ui:define name="menu">
+		<h:form id="form">
+
+
+
+			<b>Stock Service</b>
+
+
+			<td><h:outputText value="Min Quantity"></h:outputText></td>
+			<td><h:inputText converter="javax.faces.Integer"
+					value="#{StockController.mincnt}"></h:inputText></td>
+
+			<br />
+			<td><h:outputText converter="javax.faces.Integer"
+					value="Max Quantity"></h:outputText></td>
+			<h:inputText value="#{StockController.maxcnt}"></h:inputText>
+			<br />
+			
+			<br />
+			<td><h:outputText converter="javax.faces.Integer"
+					value="Curent Quantity"></h:outputText></td>
+			<h:inputText value="#{StockController.ccnt}"></h:inputText>
+			<br />
+
+			<td><h:selectOneMenu
+					value="#{StockController.id_prod_to_add}">
+					<f:selectItem itemLabel="Choisir Un Produit" itemValue="#{null}" />
+					<f:selectItems
+						value="#{ProdController.getallprods()}"
+						var="Product" itemLabel="#{Product.getName()}"
+						itemValue="#{Product.getProduct_Id()}" />
+				</h:selectOneMenu></td>
+			<br />
+			<tr>
+				<td colspan="2"><h:commandButton
+						value="Ajouter un Nouveau Produit au Stock"
+						action="#{StockController.addnewprodstock(
+						StockController.mincnt,
+						StockController.ccnt,
+						StockController.maxcnt,
+						StockController.id_prod_to_add
+						)}" /></td>
+			</tr>
+
+
+
+			<h:dataTable value="#{StockController.getallstock()}" var="Stock"
+				border="1">
+				<f:facet name="header">
+					<h:outputText value="Available Stocks" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Name" />
+					</f:facet>
+					<h:outputText value="#{Stock.getProduct().getName()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Id" />
+					</f:facet>
+					<h:outputText value="#{Stock.getProduct().getProduct_Id()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Min Quantity" />
+					</f:facet>
+					<h:outputText value="#{Stock.getProduct_min_qunatity()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Max Quantity" />
+					</f:facet>
+					<h:outputText value="#{Stock.getProduct_max_qunatity()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Current Quantity" />
+					</f:facet>
+					<h:outputText value="#{Stock.getProduct_curent_quantity()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandButton
+						action="#{StockController.removeStockbyId(Stock.getStock_id())}"
+						value="Delete" />
+
+				</h:column>
+
+			</h:dataTable>
+			<p></p>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

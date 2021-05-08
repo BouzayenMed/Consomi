@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Connexion" />
+	<ui:define name="menu">
+		<h:form id="form">
+		
+			
+			
+			
+			<h:dataTable value="#{RayController.showRay()}" var="Ray" border="1">
+				<f:facet name="header">
+					<h:outputText value="Available Rays" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{Ray.getRay_Id()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Ray Name" />
+					</f:facet>
+					<h:outputText value="#{Ray.getRayName()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cat Name" />
+					</f:facet>
+					<h:outputText value="#{Ray.getCategory().getName()}"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandButton
+						action="#{RayController.removeRay(Ray.getRay_Id())}"
+						value="Supprimer" />
+					<h:commandButton
+						
+						action="#{RayController.navigate_to_showprod(Ray.getRay_Id())}"
+		
+						value="Affichier liste Product" />
+
+				</h:column>
+
+			</h:dataTable>
+
+			<p></p>
+			<h:commandButton value="Add Ray" action="login2.jsf" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

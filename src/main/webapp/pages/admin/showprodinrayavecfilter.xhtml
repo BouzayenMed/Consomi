@@ -1,0 +1,669 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Add Ray" />
+	<ui:define name="menu">
+		<h:form id="form">
+
+
+
+			<div class="ads-grid py-sm-5 py-4">
+
+				<div class="container py-xl-4 py-lg-2">
+					<!-- tittle heading -->
+
+					<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+						<h:outputLabel value="#{RayController.selcted_ray.getRayName()}" />
+					</h3>
+					<!-- //tittle heading  selcted_ray-->
+
+
+					<div class="row">
+						<!-- product left -->
+
+						<div class="agileinfo-ads-display col-lg-9">
+							<ui:repeat var="Prod_in_ray"
+								value="#{ProdinRayController.find_product_Ray_byRayIdavecfilter
+			(RayController.getSelectedRayid())}">
+
+
+								<div class="col-md-4 product-men mt-5">
+
+									<div class="men-pro-item simpleCart_shelfItem">
+
+										<div class="men-thumb-item text-center">
+
+											<h:graphicImage library="images" name="logo2.png" />
+											<div class="men-cart-pro">
+
+												<div class="inner-men-cart-pro">
+													<a href="single.html" class="link-product-add-cart">Quick
+														View</a>
+												</div>
+											</div>
+										</div>
+
+										<div class="item-info-product text-center border-top mt-4">
+
+											<h4 class="pt-1">
+												<a href="single.html"> <h:outputText value=""></h:outputText>
+												</a>
+											</h4>
+
+											<div class="info-product-price my-2">
+
+												<h4 class="pt-1">
+													<h:outputText value="#{Prod_in_ray.getProduct().getName()}" />
+												</h4>
+
+												<span class="item_price"> <h:outputText
+														value="#{Prod_in_ray.getMin_quantity()}">
+
+													</h:outputText>
+												</span> <span> <h:outputText
+														value="#{Prod_in_ray.getMax_quantity()}">
+
+													</h:outputText>
+												</span>
+											</div>
+
+<h:inputText value="#{Prod_in_ray.getProduct().x}"></h:inputText>
+											<div style="text-align: center; margin-top: 30px;">
+												<hr class="main-hr" />
+												<button   class="icon-btn add-btn">
+												
+													<div class="add-icon"></div>
+													<div 
+													 class="btn-txt"  >Add</div>
+													
+													<div ></div>
+												</button>
+												
+												<button class="icon-btn add-btn">
+													<div class="btn-txt">Remove</div>
+												</button>
+											</div>
+											<h:commandButton value="Add" action="#{ProdinRayController.add_Quantity_to_ray(Prod_in_ray.getProduct().x
+											,Prod_in_ray.getProduct().getProduct_Id())}"/>
+											<h:commandButton value="Remove" action="#{ProdinRayController.remove_Quantity_from_ray(Prod_in_ray.getProduct().x
+											,Prod_in_ray.getProduct().getProduct_Id())}"/>
+									
+										</div>
+									</div>
+								</div>
+
+
+							</ui:repeat>
+
+
+						</div>
+
+						<!-- //product left -->
+						<!-- product right -->
+
+						<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
+
+							<div class="side-bar p-sm-4 p-3">
+
+								<div class="search-hotel border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Search Here..</h3>
+
+								</div>
+								<!-- price -->
+
+								<div class="range border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Quantity</h3>
+
+									<div class="w3l-range">
+
+										<ul>
+
+											<li><a href="showprodinrayavecfilter.jsf">Products Manquant</a></li>
+											
+										</ul>
+									</div>
+								</div>
+								<!-- //price -->
+								<!-- discounts -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Discount</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">5% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">10% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">20% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">30% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">50% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">60% or More</span></li>
+									</ul>
+								</div>
+								<!-- //discounts -->
+								<!-- reviews -->
+
+								<div class="customer-rev border-bottom left-side py-2">
+
+									<h3 class="agileits-sear-head mb-3">Customer Review</h3>
+
+									<ul>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <span>5.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <span>4.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star-half" /> <span>3.5</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <span>3.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star-half" /> <span>2.5</span>
+										</a></li>
+									</ul>
+								</div>
+								<!-- //reviews -->
+								<!-- electronics -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Electronics</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Cameras &amp; Photography</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Car &amp; Vehicle Electronics</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Computers &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">GPS &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Headphones</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Home Audio</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Home Theater, TV &amp; Video</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Mobiles &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Portable Media Players</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Tablets</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Telephones &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Wearable Technology</span></li>
+									</ul>
+								</div>
+								<!-- //electronics -->
+								<!-- delivery -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Eligible for Cash On Delivery</span></li>
+									</ul>
+								</div>
+								<!-- //delivery -->
+								<!-- arrivals -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">New Arrivals</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Last 30 days</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Last 90 days</span></li>
+									</ul>
+								</div>
+								<!-- //arrivals -->
+								<!-- best seller -->
+
+								<div class="f-grid py-2">
+
+									<h3 class="agileits-sear-head mb-3">Best Seller</h3>
+
+									<div class="box-scroll">
+
+										<div class="scroll">
+
+											<div class="row">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k1.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Samsung Galaxy On7 Prime (Gold, 4GB RAM +
+														64GB Memory)</a> <a href="" class="price-mar mt-2">$12,990.00</a>
+												</div>
+											</div>
+
+											<div class="row my-4">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k2.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Haier 195 L 4 Star Direct-Cool Single Door
+														Refrigerator</a> <a href="" class="price-mar mt-2">$12,499.00</a>
+												</div>
+											</div>
+
+											<div class="row">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k3.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Ambrane 13000 mAh Power Bank (P-1310
+														Premium)</a> <a href="" class="price-mar mt-2">$1,199.00 </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- //best seller -->
+							</div>
+							<!-- //product right -->
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="ads-grid py-sm-5 py-4">
+
+				<div class="container py-xl-4 py-lg-2">
+
+					<div class="row">
+
+
+
+
+
+						<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
+
+							<div class="side-bar p-sm-4 p-3">
+
+								<div class="search-hotel border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Search Here..</h3>
+
+								</div>
+								<!-- price -->
+
+								<div class="range border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Price</h3>
+
+									<div class="w3l-range">
+
+										<ul>
+
+											<li><a href="#">Under $1,000</a></li>
+
+											<li class="my-1"><a href="#">$1,000 - $5,000</a></li>
+
+											<li><a href="#">$5,000 - $10,000</a></li>
+
+											<li class="my-1"><a href="#">$10,000 - $20,000</a></li>
+
+											<li><a href="#">$20,000 $30,000</a></li>
+
+											<li class="mt-1"><a href="#">Over $30,000</a></li>
+										</ul>
+									</div>
+								</div>
+								<!-- //price -->
+								<!-- discounts -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Discount</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">5% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">10% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">20% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">30% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">50% or More</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">60% or More</span></li>
+									</ul>
+								</div>
+								<!-- //discounts -->
+								<!-- reviews -->
+
+								<div class="customer-rev border-bottom left-side py-2">
+
+									<h3 class="agileits-sear-head mb-3">Customer Review</h3>
+
+									<ul>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <span>5.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <span>4.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <i
+												class="fas fa-star-half" /> <span>3.5</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star" /> <span>3.0</span>
+										</a></li>
+
+										<li><a href="#"> <i class="fas fa-star" /> <i
+												class="fas fa-star" /> <i class="fas fa-star-half" /> <span>2.5</span>
+										</a></li>
+									</ul>
+								</div>
+								<!-- //reviews -->
+								<!-- electronics -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Electronics</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Cameras &amp; Photography</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Car &amp; Vehicle Electronics</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Computers &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">GPS &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Headphones</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Home Audio</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Home Theater, TV &amp; Video</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Mobiles &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Portable Media Players</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Tablets</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Telephones &amp; Accessories</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Wearable Technology</span></li>
+									</ul>
+								</div>
+								<!-- //electronics -->
+								<!-- delivery -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Eligible for Cash On Delivery</span></li>
+									</ul>
+								</div>
+								<!-- //delivery -->
+								<!-- arrivals -->
+
+								<div class="left-side border-bottom py-2">
+
+									<h3 class="agileits-sear-head mb-3">New Arrivals</h3>
+
+									<ul>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Last 30 days</span></li>
+
+										<li><input type="checkbox" class="checked" /> <span
+											class="span">Last 90 days</span></li>
+									</ul>
+								</div>
+								<!-- //arrivals -->
+								<!-- best seller -->
+
+								<div class="f-grid py-2">
+
+									<h3 class="agileits-sear-head mb-3">Best Seller</h3>
+
+									<div class="box-scroll">
+
+										<div class="scroll">
+
+											<div class="row">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k1.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Samsung Galaxy On7 Prime (Gold, 4GB RAM +
+														64GB Memory)</a> <a href="" class="price-mar mt-2">$12,990.00</a>
+												</div>
+											</div>
+
+											<div class="row my-4">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k2.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Haier 195 L 4 Star Direct-Cool Single Door
+														Refrigerator</a> <a href="" class="price-mar mt-2">$12,499.00</a>
+												</div>
+											</div>
+
+											<div class="row">
+
+												<div class="col-lg-3 col-sm-2 col-3 left-mar">
+													<img src="images/k3.jpg" alt="" class="img-fluid" />
+												</div>
+
+												<div class="col-lg-9 col-sm-10 col-9 w3_mvd">
+													<a href="">Ambrane 13000 mAh Power Bank (P-1310
+														Premium)</a> <a href="" class="price-mar mt-2">$1,199.00 </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- //best seller -->
+							</div>
+							<!-- //product right -->
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+			<td><h:outputText value="Min Quantity"></h:outputText></td>
+			<td><h:inputText converter="javax.faces.Integer"
+					value="#{ProdinRayController.mincnt}"></h:inputText></td>
+
+			<br />
+			<td><h:outputText converter="javax.faces.Integer"
+					value="Max Quantity"></h:outputText></td>
+			<h:inputText value="#{ProdinRayController.maxcnt}"></h:inputText>
+			<br />
+
+			<td><h:selectOneMenu
+					value="#{ProdinRayController.id_prod_to_add}">
+					<f:selectItem itemLabel="Choisir Un Produit" itemValue="#{null}" />
+					<f:selectItems
+						value="#{ProdController.get_Products_in_Ray(RayController.selectedRayid)}"
+						var="Product" itemLabel="#{Product.getName()}"
+						itemValue="#{Product.getProduct_Id()}" />
+				</h:selectOneMenu></td>
+			<br />
+			<tr>
+				<td colspan="2"><h:commandButton
+						value="Ajouter un Nouveau Produit dans cette Rayon"
+						action="#{ProdinRayController.new_prod_to_rat(ProdinRayController.mincnt
+						,ProdinRayController.maxcnt,ProdinRayController.prod_to_add.getProduct_Id())}" /></td>
+			</tr>
+
+			<b>Affichier produit in the Line</b>
+
+
+			<h:dataTable
+				value="#{ProdinRayController.find_product_Ray_byRayIdavecfilter
+			(RayController.getSelectedRayid())}"
+				var="Prod_in_ray" border="1">
+				<f:facet name="header">
+					<h:outputText value="Available Products" />
+				</f:facet>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Id " />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getProduct().getProduct_Id()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Name " />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getProduct().getName()}"></h:outputText>
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Current Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getCurent_quantity() }"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Min Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getMin_quantity() }"></h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Max Quantity" />
+					</f:facet>
+					<h:outputText value="#{Prod_in_ray.getMax_quantity() }"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Add Quantity" />
+					</f:facet>
+
+					<h:inputText value="#{Prod_in_ray.getProduct().x}"></h:inputText>
+					<!-- Hedhi ma temchi ken ki n5arejha me tableau xD -->
+					<td colspan="2"><h:commandButton value="Add"
+							action="#{ProdinRayController.add_Quantity_to_ray(
+						Prod_in_ray.getProduct().x,Prod_in_ray.getProduct().getProduct_Id()
+						)}" /></td>
+
+				</h:column>
+
+
+			</h:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
